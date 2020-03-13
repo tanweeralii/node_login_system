@@ -3,7 +3,7 @@ A basic nodejs login system using MongoDB as database with gmailAPIs.
 
 ## Installation
 - Get the Gmail API from https://console.developers.google.com
-- Paste the ClinetID and Client Secret of GmailAPI in app.js file
+- Paste the ClientID and Client Secret of GmailAPI in app.js file
 - Create a MongoDB Server in your local machine.
 - Run app.js
 
