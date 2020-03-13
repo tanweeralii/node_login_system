@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="./comment.png"/>
+    <title>Reset Password::Chatroom</title>
+    <style type="text/css">
+      body{
+       background-image:url("./images/background1.jpg");
+       background-margin:100;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <h3 class="text-white text-center text-capitalize mt-3 para">Reset Password</h3>
+    <div class="outer-error2 align-items-center">
+      <ul class="internal-error" id="internal-error">  
+      </ul>
+    </div>
+    <section>
+      <div class="container">
+        <form class="main-form">
+          <div class="form-group">
+            <div class="row" id="target">
+              <div class="col mt-1">
+                <label for="reg_email" class="text-white">Reg. Email</label>
+                <input type="email" name="reg_email" id="reg_email" class="form-control" autocomplete="off" placeholder="name@example.com">
+              </div>
+              <div class="col mt-5">
+                <button type="button" name="send_code" id="send_code" class="button4 bg-transparent mt-1">Send</button>
+              </div>
+            </div>
+            <div class="row" id="target1">
+              <div class="col mt-1">
+                <label for="code" class="text-white">Verification Code</label>
+                <input type="text" name="code" id="code" class="form-control" autocomplete="off" placeholder="Write your code here.">
+                <small class="text-muted form-text">A code has been sent to your email.</small>
+              </div>
+              <div class="col mt-5">
+                <button type="button" name="submit_code" id="submit_code" class="button4 bg-transparent mt-1">Submit</button>
+              </div>
+            </div>
+            <div class="row" id="target2">
+              <div class="col mt-3">
+                <label for="password" class="text-white">New Password</label>
+                <input type="password" name="password" id="new_password" class="form-control" autocomplete="off" placeholder="Password" readonly onfocus="this.removeAttribute('readonly');">
+              </div>
+              <div class="col mt-5">
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control" autocomplete="off" placeholder="Confirm" readonly onfocus="this.removeAttribute('readonly');">
+              </div>
+              <div class="col mt-3">
+                <label class="form-check" style="display:inline-block;"><img src="./images/locked.png" id="img" style="width:30px;height:30px;filter:invert(1);" class="mt-4">
+                <input type="checkbox" style="opacity:0;" id="showpass" class="form-check-input" onclick="myfunction()">
+                </label>
+              </div>
+            </div>
+            <div class="col mt-5" id="target3">
+              <button type="button" name="reset" id="reset" class="button4 bg-transparent mt-1">Reset</button>
+            </div>
+          </div>  
+        </form>
+      </div>
+    </section>
+     <footer class="pt-2">
+        <div class="page-footer text-center text-white mt-5 mb-2">© 2019 Copyright: Thenewbieprojects</div>  
+        <div class="page-footer1 text-center"><p><a class="text-white" href="images/background1.jpg" target="_new10">Terms of Services</a></p></div> 
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/d82a99eeb8.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var x = document.getElementById("target1"); 
+      var y = document.getElementById("target2"); 
+      var z = document.getElementById("target3");
+      x.style.visibility = 'hidden';
+      y.style.visibility = 'hidden';
+      z.style.visibility = 'hidden';
+    </script>
+    <script>
+      function myfunction() {
+        var x = document.getElementById("new_password");
+        var y = document.getElementById("confirm_password");
+        if (x.type === "password" && y.type=="password") {
+          x.type = "text";
+          y.type = "text";
+          document.getElementById("img").src = "./images/unlocked.png";
+        } else {
+          x.type = "password";
+          y.type = "password";
+          document.getElementById("img").src = "./images/locked.png";
+        }
+      }
+      function showme(){
+        var x = document.getElementById("target1");
+        var y = document.getElementById("target");
+        x.style.visibility = 'visible';
+        y.style.visibility = 'hidden';
+      }
+      function showme2(){
+        var x = document.getElementById("target2");
+        var y = document.getElementById("target3");
+        var z = document.getElementById("target1");
+        x.style.visibility = 'visible';
+        y.style.visibility = 'visible';
+        z.style.visibility = 'hidden';
+      }
+      const form = {
+        email: document.getElementById('reg_email'),
+        message: document.getElementById('internal-error'),
+        submit: document.getElementById('send_code')
+      };
+      form.submit.addEventListener('click', () => {
+        sessionStorage.setItem('email',`${form.email.value}`);
+        const request = new XMLHttpRequest();
+
+        request.onload = () => {
+          let responseObject = null;
+
+          try{
+            responseObject = JSON.parse(request.responseText);
+          }catch(e){
+            console.error('Could not parse JSON!');
+          }
+
+          if(responseObject){
+            handleResponse(responseObject);
+          }
+        }
+        const requestData = `email=${form.email.value}`;
+
+        request.open('post', 'check_email');
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.send(requestData);
+         
+      })
+      const form1 = {
+        code: document.getElementById('code'),
+        message: document.getElementById('internal-error'),
+        submit: document.getElementById('submit_code')
+      };
+      form1.submit.addEventListener('click', () => {
+        const requestData = `${form1.code.value}`;
+        var abc = sessionStorage.getItem('abc');
+        var abc_decode = atob(abc);
+        if(abc_decode == requestData){
+          while(form.message.firstChild){
+            form.message.removeChild(form.message.firstChild);
+          }
+          showme2();
+          sessionStorage.removeItem("abc");
+        }
+        else{
+          while(form.message.firstChild){
+            form.message.removeChild(form.message.firstChild);
+          }
+          const li = document.createElement('li');
+          li.textContent = "Wrong Code!";
+          form.message.appendChild(li);
+          form.message.style.display = "block";
+        }
+      })
+      function handleResponse(responseObject){
+        if(responseObject.ok=="true"){
+          sessionStorage.setItem('abc',responseObject.encode);
+          form.message.removeChild(form.message.firstChild);
+          showme();
+        }
+        else{
+          while(form.message.firstChild){
+            form.message.removeChild(form.message.firstChild);
+          }
+          const li = document.createElement('li');
+          li.textContent = responseObject.message;
+          form.message.appendChild(li);
+          form.message.style.display = "block";
+        }
+      }
+      const form2 = {
+        email: sessionStorage.getItem('email'),
+        password: document.getElementById('new_password'),
+        confirm_password: document.getElementById('confirm_password'),
+        message: document.getElementById('internal-error'),
+        submit: document.getElementById('reset')
+      };
+      form2.submit.addEventListener('click', () => {
+  
+        const request = new XMLHttpRequest();
+
+        request.onload = () => {
+          let responseObject1 = null;
+
+          try{
+            responseObject1 = JSON.parse(request.responseText);
+          }catch(e){
+            console.error('Could not parse JSON!');
+          }
+
+          if(responseObject1.ok=="true"){
+            alert("Password has been changed");
+            window.location = "Login.html";
+          }
+          else{
+            while(form.message.firstChild){
+              form.message.removeChild(form.message.firstChild);
+            }
+            const li = document.createElement('li');
+            li.textContent = responseObject1.message;
+            form.message.appendChild(li);
+            form.message.style.display = "block";
+          }
+        }
+        const requestData = `email=${form2.email}&password=${form2.password.value}&confirm_password=${form2.confirm_password.value}`;
+
+        request.open('post', 'set_password');
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.send(requestData);
+      })
+    </script>
+    </body>
+</html>
