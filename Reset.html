@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="scripts/main.css">
+    <link rel="stylesheet" type="text/javascript" href="scripts/__reset.js">
+    <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="./comment.png"/>
+    <title>Reset Password::Chatroom</title>
+  </head>
+  <body>
+    <h3 class="text-white text-center text-capitalize mt-3 para">Reset Password</h3>
+    <div class="outer-error2 align-items-center">
+      <ul class="internal-error" id="internal-error">  
+      </ul>
+    </div>
+    <section>
+      <div class="container">
+        <form class="main-form">
+          <div class="form-group">
+            <div class="row" id="target">
+              <div class="col mt-1">
+                <label for="reg_email" class="text-white">Reg. Email</label>
+                <input type="email" name="reg_email" id="reg_email" class="form-control" autocomplete="off" placeholder="name@example.com">
+              </div>
+              <div class="col mt-5">
+                <button type="button" name="send_code" id="send_code" class="button4 bg-transparent mt-1">Send</button>
+              </div>
+            </div>
+            <div class="row" id="target1">
+              <div class="col mt-1">
+                <label for="code" class="text-white">Verification Code</label>
+                <input type="text" name="code" id="code" class="form-control" autocomplete="off" placeholder="Write your code here.">
+                <small class="text-muted form-text">A code has been sent to your email.</small>
+              </div>
+              <div class="col mt-5">
+                <button type="button" name="submit_code" id="submit_code" class="button4 bg-transparent mt-1">Submit</button>
+              </div>
+            </div>
+            <div class="row" id="target2">
+              <div class="col mt-3">
+                <label for="password" class="text-white">New Password</label>
+                <input type="password" name="password" id="new_password" class="form-control" autocomplete="off" placeholder="Password" readonly onfocus="this.removeAttribute('readonly');">
+              </div>
+              <div class="col mt-5">
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control" autocomplete="off" placeholder="Confirm" readonly onfocus="this.removeAttribute('readonly');">
+              </div>
+              <div class="col mt-3">
+                <label class="form-check" style="display:inline-block;"><img src="./images/locked.png" id="img" style="width:30px;height:30px;filter:invert(1);" class="mt-4">
+                <input type="checkbox" style="opacity:0;" id="showpass" class="form-check-input" onclick="myfunction()">
+                </label>
+              </div>
+            </div>
+            <div class="col mt-5" id="target3">
+              <button type="button" name="reset" id="reset" class="button4 bg-transparent mt-1">Reset</button>
+            </div>
+          </div>  
+        </form>
+      </div>
+    </section>
+     <footer class="pt-2">
+        <div class="page-footer text-center text-white mt-5 mb-2">© 2019 Copyright: Thenewbieprojects</div>  
+        <div class="page-footer1 text-center"><p><a class="text-white" href="images/background1.jpg" target="_new10">Terms of Services</a></p></div> 
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/d82a99eeb8.js" crossorigin="anonymous"></script>
+    </body>
+</html>

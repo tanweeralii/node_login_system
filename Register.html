@@ -4,28 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="scripts/main.css">
+    <link rel="stylesheet" type="text/javascript" href="scripts/__register.js">
     <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
     <title>Register</title>
-    <style type="text/css">
-      body{
-       background-image:url("./images/background1.jpg");
-       background-margin:100;
-      }
-      .navbar-brand{
-        font-family: 'Mansalva', cursive;
-        color:white;
-      }
-      .navbar-brand:hover{
-        color:grey;
-        transition-duration: 0.4s;
-        -webkit-transition-duration: 0.4s;
-      }
-      .para{
-        font-family: 'Titillium Web', sans-serif;
-      }
-    </style>
     </head>
   <body>
     <header>
@@ -93,77 +76,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/d82a99eeb8.js" crossorigin="anonymous"></script>
-    <script>
-    	function myfunction() {
-		  var x = document.getElementById("password");
-		  var y = document.getElementById("confirm_password");
-		  if (x.type === "password" && y.type=="password") {
-		    x.type = "text";
-		    y.type = "text";
-		    document.getElementById("img").src = "./images/unlocked.png";
-		  } else {
-		    x.type = "password";
-		    y.type = "password"
-		    document.getElementById("img").src = "./images/locked.png";
-		  }
-		}
-    </script>
-    <script>
-      document.getElementById('google').addEventListener('click',function(){
-        $.post('google',function(data,status){
-          location.href = data;
-        })
-      })
-      const form = {
-        first_name: document.getElementById('first_name'),
-        last_name: document.getElementById('last_name'),
-        email: document.getElementById('email'),
-        password: document.getElementById('password'),
-        confirm_password: document.getElementById('confirm_password'),
-        message: document.getElementById('internal-error'),
-        submit: document.getElementById('register')
-      };
-
-      form.submit.addEventListener('click', () => {
-        const request = new XMLHttpRequest();
-
-        request.onload = () => {
-          let responseObject = null;
-
-          try{
-            	responseObject = JSON.parse(request.responseText);
-          }catch(e){
-            console.error('Could not parse JSON!');
-          }
-
-          if(responseObject){
-            handleResponse(responseObject);
-          }
-        }
-        const requestData = `first_name=${form.first_name.value}&last_name=${form.last_name.value}&email=${form.email.value}&password=${form.password.value}&confirm_password=${form.confirm_password.value}`;
-        
-
-        request.open('post', 'Register');
-        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        request.send(requestData);
-      })
-      function handleResponse(responseObject){
-      	if(responseObject.ok=='true'){
-      		while(form.message.firstChild){
-             form.message.removeChild(form.message.firstChild);
-          } 
-          location.href='success.html';
-        }
-        else{
-          while(form.message.firstChild){
-            form.message.removeChild(form.message.firstChild);
-          }
-          const li = document.createElement('li');
-          li.textContent = responseObject.message;
-          form.message.appendChild(li);
-          form.message.style.display = "block";
-        }
-      }
-    </script>
   </body>
 </html>

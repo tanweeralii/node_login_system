@@ -2,19 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="./bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="scripts/main.css">
+    <link rel="stylesheet" type="text/javascript" href="scripts/__success.js">
     <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
     <title>Success</title>
-    <style type="text/css">
-      body{
-       background-image:url("./images/background1.jpg");
-       background-margin:100;
-      }
-      .para{
-        font-family: 'Titillium Web', sans-serif;
-      }
-      </style>
   </head>
   <body>
     <header>
@@ -26,13 +18,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/d82a99eeb8.js" crossorigin="anonymous"></script>
-    <script>
-      $(document).ready(function(){
-        $.post('code',{'code':window.location.href},function(data,status){
-          sessionStorage.setItem('email',data.email);
-          sessionStorage.setItem('id',data.id);
-        })
-      })
-    </script>
     </body>
 </html>
