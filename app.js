@@ -70,12 +70,8 @@ app.post('/Register',function(req,res){
                   		var ok = "false";
                     }
 				}
-            }
-			data = new Object();
-			data.message = message;
-    		data.ok = ok;
-    		var str = JSON.stringify(data);
-    		res.send(str);
+           }
+    		res.json({message:message,ok:ok});
             client.close();
 		});
 	});
@@ -100,11 +96,7 @@ app.post('/Login',function(req,res){
                 var message = "Email does not exists!";
                 var ok = "false";
             }
-            data = new Object();
-            data.message = message;
-            data.ok = ok;
-            var str = JSON.stringify(data);
-            res.send(str);
+            res.json({message:message,ok:ok});
             client.close();
         });
     });
@@ -155,12 +147,7 @@ app.post('/check_email',function(req,res){
                 }
                 var ok = "false";        
            }
-            data = new Object();
-            data.message = message;
-            data.ok = ok;
-            data.encode = encoded;
-            var str = JSON.stringify(data);
-            res.send(str);
+            res.json({message:message,ok:ok});
             client.close(); 
         });
     });
@@ -191,11 +178,7 @@ app.post('/set_password',function(req,res){
                 var message = "Passwords not matching!";
                 var ok = "false";
             }
-            data = new Object();
-            data.message = message;
-            data.ok = ok;
-            var str = JSON.stringify(data);
-            res.send(str);
+            res.json({message:message,ok:ok});
             client.close();
         });
     });
@@ -255,14 +238,7 @@ app.post('/code',function(req,res){
           // get the google id and email
         const userGoogleId = me.data.id;
         const userGoogleEmail = me.data.emails && me.data.emails.length && me.data.emails[0].value;
-
-        var response = new Object();
-        response.id = userGoogleId;
-        response.email = userGoogleEmail;
-        response.tokens = tokens;
-          // return so we can login or sign up the user
-        var str = JSON.stringify(response);
-        res.send(str);
+        res.json({id:userGoogleId,email:userGoogleEmail,tokens:tokens});
     };
     var ans = getGoogleAccountFromCode(code);
     console.log(ans);
